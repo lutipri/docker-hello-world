@@ -49,5 +49,3 @@ $ curl -X POST localhost/super/secret
 $ curl --write-out %{http_code} --silent --output /dev/null localhost
 200
 ```
-
-
