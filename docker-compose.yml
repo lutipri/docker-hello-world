@@ -5,9 +5,9 @@ services:
       context: .
     image: lutipri/hello-world
     ports:
-      - '8085:8000'
+      - 8085:8000
   s2:
     container_name: hello-world-s2
     image: lutipri/hello-world   
     ports:
-      - '8086:8000'
+      - 8086:8000
