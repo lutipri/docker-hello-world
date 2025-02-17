@@ -6,8 +6,16 @@ services:
     image: lutipri/hello-world
     ports:
       - 8085:8000
+    networks:
+      - frontend
   s2:
     container_name: hello-world-s2
     image: lutipri/hello-world   
     ports:
       - 8086:8000
+    networks:
+      - frontend
+      
+networks:
+  frontend:
+    driver: bridge
