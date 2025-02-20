@@ -21,7 +21,6 @@ services:
       - 8086:8000
     networks:
       - frontend
-      - coolify-proxy
     labels:
       - 'caddy_0.encode=zstd gzip'
       - 'caddy_0=https://s2.apps.caption.be'
