@@ -8,15 +8,28 @@ services:
     networks:
       - frontend
     labels:
-      - caddy_ingress_network=frontend
+      - 'caddy_0.encode=zstd gzip'
+      - 'caddy_0=https://s1.apps.caption.be'
+      - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
+      # - 'caddy_0.handle_path=/*'
+      # - caddy_0.header=-Server
+      # - 'caddy_0.try_files={path} /index.html /index.php'
+      - 'caddy_ingress_network=frontend'
   s2:
     image: lutipri/hello-world   
     ports:
       - 8086:8000
     networks:
       - frontend
+      - coolify-proxy
     labels:
-      - caddy_ingress_network=frontend
+      - 'caddy_0.encode=zstd gzip'
+      - 'caddy_0=https://s2.apps.caption.be'
+      - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
+      # - 'caddy_0.handle_path=/*'
+      # - caddy_0.header=-Server
+      # - 'caddy_0.try_files={path} /index.html /index.php'
+      - 'caddy_ingress_network=frontend'
       
 networks:
   frontend:
