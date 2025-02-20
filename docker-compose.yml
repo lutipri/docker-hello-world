@@ -3,9 +3,6 @@ services:
     build:
       context: .
     image: lutipri/hello-world
-    environment:
-      TEST: ${COOLIFY_RESOURCE_UUID}
-      TEST2: ${TEST_TTTT:-$COOLIFY_RESOURCE_UUID}
     ports:
       - 8085:8000
     labels:
@@ -13,7 +10,7 @@ services:
       - 'caddy_0=https://s1.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
-      # - 'caddy_ingress_network=coolify'
+      - 'caddy_ingress_network=${COOLIFY_RESOURCE_UUID}'
     networks:
       - test_network
 
