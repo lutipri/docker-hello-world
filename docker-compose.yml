@@ -5,7 +5,7 @@ services:
     image: lutipri/hello-world
     environment:
       TEST: ${COOLIFY_RESOURCE_UUID}
-      TEST2: ${TEST:-value}
+      TEST2: ${TEST_TTTT:-value}
     ports:
       - 8085:8000
     labels:
