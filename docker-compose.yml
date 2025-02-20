@@ -3,8 +3,6 @@ services:
     build:
       context: .
     image: lutipri/hello-world
-    environment:
-      COOLIFY_RESOURCE_UUID: ww02222222
     ports:
       - 8085:8000
     labels:
@@ -12,9 +10,9 @@ services:
       - 'caddy_0=https://s1.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
-      - 'caddy_ingress_network=${COOLIFY_RESOURCE_UUID}'
+      - 'caddy_ingress_network=coolify'
     networks:
-      - $COOLIFY_RESOURCE_UUID
+      - test_network
 
   s2:
     image: lutipri/hello-world
@@ -25,7 +23,7 @@ services:
       - 'caddy_0=https://s2.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
-      # - 'caddy_ingress_network=test_network'
+      - 'caddy_ingress_network=coolify'
     networks:
       - test_network
 
