@@ -12,7 +12,7 @@ services:
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
       # - 'caddy_ingress_network=coolify'
     networks:
-      - coolify
+      - ww0g4cwko8kksk004g8k4c4g
 
   s2:
     image: lutipri/hello-world
@@ -25,12 +25,12 @@ services:
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
       # - 'caddy_ingress_network=coolify'
     networks:
-      - coolify
+      - ww0g4cwko8kksk004g8k4c4g
 
 # networks:
 #   test_network:
 #     driver: bridge
 
 networks:
-  coolify:
+  ww0g4cwko8kksk004g8k4c4g:
     external: true
