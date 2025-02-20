@@ -8,6 +8,7 @@ services:
     labels:
       - 'caddy_0.encode=zstd gzip'
       - 'caddy_0=https://s1.apps.caption.be'
+      - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
       - 'caddy_ingress_network=coolify'
     networks:
@@ -20,6 +21,7 @@ services:
     labels:
       - 'caddy_0.encode=zstd gzip'
       - 'caddy_0=https://s2.apps.caption.be'
+      - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
       - 'caddy_ingress_network=coolify'
     networks:
