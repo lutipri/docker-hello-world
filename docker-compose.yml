@@ -3,6 +3,8 @@ services:
     build:
       context: .
     image: lutipri/hello-world
+    environment:
+      COOLIFY_RESOURCE_UUID: ww02222222
     ports:
       - 8085:8000
     labels:
