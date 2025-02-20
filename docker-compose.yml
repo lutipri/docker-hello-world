@@ -3,7 +3,7 @@ services:
     build:
       context: .
     image: lutipri/hello-world
-     environment:
+    environment:
       TEST: ${COOLIFY_RESOURCE_UUID}
       TEST2: ${TEST:-value}
     ports:
