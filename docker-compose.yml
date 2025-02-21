@@ -27,6 +27,20 @@ services:
     networks:
       - ww0g4cwko8kksk004g8k4c4g
 
+  http-echo:
+    image: hashicorp/http-echo
+    ports:
+      - 8087:8080
+    command: '-listen=:8080 -text="hello world"'
+    labels:
+      - 'caddy_0.encode=zstd gzip'
+      - 'caddy_0=https://hello.apps.caption.be'
+      - 'caddy_0.handle_path=/*'
+      - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8080}}'
+      - 'caddy_ingress_network=ww0g4cwko8kksk004g8k4c4g'
+    networks:
+      - ww0g4cwko8kksk004g8k4c4g
+
 networks:
   ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
     external: true
