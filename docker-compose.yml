@@ -31,7 +31,7 @@ services:
     image: hashicorp/http-echo
     ports:
       - 8087:8080
-    command: '-listen=:8080 -text="Lorem ipsum dolro sit annet"'
+    command: '-listen=:8080 -text="Preview deployment 1"'
     labels:
       - 'caddy_0.encode=zstd gzip'
       - 'caddy_0=https://hello.apps.caption.be'
