@@ -10,9 +10,9 @@ services:
       - 'caddy_0=https://s1.apps.caption.be' # Specifies the domain that Caddy should serve.
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'  # Instructs Caddy to reverse proxy requests to the service on port 8000.
-      - 'caddy_ingress_network=ww0g4cwko8kksk004g8k4c4g' # Indicates the Docker network that Caddy should use to connect to this service.
+      - 'caddy_ingress_network=coolify' # Indicates the Docker network that Caddy should use to connect to this service.
     networks:
-      - ww0g4cwko8kksk004g8k4c4g
+      - coolify
 
   s2:
     image: lutipri/hello-world
@@ -23,7 +23,7 @@ services:
       - 'caddy_0=https://s2.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
-      - 'caddy_ingress_network=ww0g4cwko8kksk004g8k4c4g'
+      - 'caddy_ingress_network=coolify'
     networks:
       - ww0g4cwko8kksk004g8k4c4g
 
@@ -37,10 +37,14 @@ services:
       - 'caddy_0=https://hello.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8080}}'
-      - 'caddy_ingress_network=ww0g4cwko8kksk004g8k4c4g'
+      - 'caddy_ingress_network=coolify'
     networks:
-      - ww0g4cwko8kksk004g8k4c4g
+      - coolify
+
+# networks:
+#   ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
+#     external: true
 
 networks:
-  ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
+  coolify: # network managed by Coolify and is created when deploying for the first time
     external: true
