@@ -10,7 +10,7 @@ services:
       - 'caddy_0=https://s1.apps.caption.be' # Specifies the domain that Caddy should serve.
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'  # Instructs Caddy to reverse proxy requests to the service on port 8000.
-      - 'caddy_ingress_network=coolify' # Indicates the Docker network that Caddy should use to connect to this service.
+      # - 'caddy_ingress_network=coolify' # Indicates the Docker network that Caddy should use to connect to this service.
     networks:
       - coolify
 
@@ -23,7 +23,7 @@ services:
       - 'caddy_0=https://s2.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8000}}'
-      - 'caddy_ingress_network=coolify'
+      # - 'caddy_ingress_network=coolify'
     networks:
       - coolify
 
@@ -37,7 +37,7 @@ services:
       - 'caddy_0=https://hello.apps.caption.be'
       - 'caddy_0.handle_path=/*'
       - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 8080}}'
-      - 'caddy_ingress_network=coolify'
+      # - 'caddy_ingress_network=coolify'
     networks:
       - coolify
 
