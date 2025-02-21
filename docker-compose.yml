@@ -40,7 +40,7 @@ services:
       - 'caddy_ingress_network=ww0g4cwko8kksk004g8k4c4g'
     networks:
       - ww0g4cwko8kksk004g8k4c4g
-
+      
 networks:
   ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
     external: true
