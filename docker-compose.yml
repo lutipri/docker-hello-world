@@ -7,8 +7,6 @@ services:
       - SERVICE_FQDN_S1_8000
     ports:
       - 8085:8000
-    networks:
-      - coolify
 
   s2:
     image: lutipri/hello-world
@@ -16,8 +14,6 @@ services:
       - SERVICE_FQDN_S2_8000
     ports:
       - 8086:8000
-    networks:
-      - coolify
 
   http-echo:
     image: hashicorp/http-echo
@@ -26,13 +22,11 @@ services:
     ports:
       - 8087:8080
     command: '-listen=:8080 -text="Preview deployment test Nr 2"'
-    networks:
-      - coolify
 
 # networks:
 #   ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
 #     external: true
 
-networks:
-  coolify: # network managed by Coolify and is created when deploying for the first time
-    external: true
+# networks:
+#   coolify: # network managed by Coolify and is created when deploying for the first time
+#     external: true
