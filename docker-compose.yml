@@ -8,7 +8,7 @@ services:
     ports:
       - 8085:8000
     labels:
-      - traefik.http.routers.http-0-ww0g4cwko8kksk004g8k4c4g-http-echo.middlewares=oauth2-proxy
+      - traefik.http.routers.http-0-ww0g4cwko8kksk004g8k4c4g-s1.middlewares=oauth2-proxy
 
   s2:
     image: lutipri/hello-world
