@@ -5,8 +5,8 @@ services:
     image: lutipri/hello-world
     environment:
       - SERVICE_FQDN_S1_8000
-    ports:
-      - 8085:8000
+    # ports:
+    #   - 8085:8000
     labels:
       - traefik.http.routers.http-0-ww0g4cwko8kksk004g8k4c4g-s1.middlewares=oauth2-proxy
 
@@ -14,15 +14,15 @@ services:
     image: lutipri/hello-world
     environment:
       - SERVICE_FQDN_S2_8000
-    ports:
-      - 8086:8000
+    # ports:
+    #   - 8086:8000
 
   http-echo:
     image: hashicorp/http-echo
     environment:
       - SERVICE_FQDN_HTTPECHO_8080
-    ports:
-      - 8087:8080
+    # ports:
+    #   - 8087:8080
     command: '-listen=:8080 -text="Preview deployment test Nr 2"'
 
 # networks:
