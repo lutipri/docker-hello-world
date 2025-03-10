@@ -16,27 +16,26 @@ services:
       - SERVICE_FQDN_S2_8000
     labels:
       # Router for /oauth2/*
-      - "traefik.http.routers.oauth2.rule=PathPrefix(`/oauth2/`)"
-      - "traefik.http.routers.oauth2.service=oauth2proxy-srv"
-      - "traefik.http.routers.oauth2.middlewares=oauth2proxy"
+      - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.rule=PathPrefix(`/oauth2/`)"
+      - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.service=oauth2proxy-service"
+      - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.middlewares=oauth2proxy"
       # Service definition
-      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.port=4180"
-      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.scheme=http"
-      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
+      - "traefik.http.services.oauth2proxy-service.loadbalancer.server.port=4180"
+      - "traefik.http.services.oauth2proxy-service.loadbalancer.server.scheme=http"
+      - "traefik.http.services.oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
       # Middleware to set headers
       - "traefik.http.middlewares.oauth2proxy.headers.customrequestheaders.X-Real-IP={remote_host}"
       - "traefik.http.middlewares.oauth2proxy.headers.customrequestheaders.X-Forwarded-Uri={uri}"
       # ForwardAuth middleware
-      - "traefik.http.middlewares.auth.forwardauth.address=http://oauth2-proxy-urartian:4180/oauth2/auth"
-      - "traefik.http.middlewares.auth.forwardauth.trustForwardHeader=true"
-      - "traefik.http.middlewares.auth.forwardauth.authResponseHeaders=X-Real-IP,X-Auth-Request-Redirect"
+      - "traefik.http.middlewares.oauth2proxy.forwardauth.address=http://oauth2-proxy-urartian:4180/oauth2/auth"
+      - "traefik.http.middlewares.oauth2proxy.forwardauth.trustForwardHeader=true"
+      - "traefik.http.middlewares.oauth2proxy.forwardauth.authResponseHeaders=X-Real-IP,X-Auth-Request-Redirect"
+
       # Error Page Middleware
       - "traefik.http.middlewares.auth-error.redirectregex.regex=^.*$"
       - "traefik.http.middlewares.auth-error.redirectregex.replacement=https://s2.apps.caption.be/oauth2/sign_in?rd=https://{host}{uri}"
       - "traefik.http.middlewares.auth-error.redirectregex.permanent=false"
-    
-      # Apply Error Middleware to Router
-      - "traefik.http.routers.main.middlewares=auth,auth-error"
+
     # ports:
     #   - 8086:8000
 
