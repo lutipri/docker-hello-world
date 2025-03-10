@@ -32,9 +32,14 @@ services:
       - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.authResponseHeaders=X-Real-IP,X-Auth-Request-Redirect"
 
       # Error Page Middleware
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.regex=^.*$"
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.replacement=https://s2.apps.caption.be/oauth2/sign_in?rd=https://{host}{uri}"
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.permanent=false"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.regex=^.*$"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.replacement=https://s2.apps.caption.be/oauth2/sign_in?rd=https://{host}{uri}"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.permanent=false"
+
+      - "traefik.http.middlewares.oauth2proxy-error.errors.status=401"
+      - "traefik.http.middlewares.oauth2proxy-error.errors.service=oauth2-proxy-urartian"
+      - "traefik.http.middlewares.oauth2proxy-error.errors.query=/oauth2/sign_in?rd=https://{host}{uri}"
+
 
     # ports:
     #   - 8086:8000
