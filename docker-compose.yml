@@ -14,6 +14,22 @@ services:
     image: lutipri/hello-world
     environment:
       - SERVICE_FQDN_S2_8000
+    labels:
+      # Router for /oauth2/*
+      - "traefik.http.routers.oauth2.rule=PathPrefix(`/oauth2/`)"
+      - "traefik.http.routers.oauth2.service=oauth2proxy-srv"
+      - "traefik.http.routers.oauth2.middlewares=oauth2proxy"
+      # Service definition
+      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.port=4180"
+      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.scheme=http"
+      - "traefik.http.services.oauth2proxy-srv.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
+      # Middleware to set headers
+      - "traefik.http.middlewares.oauth2proxy.headers.customrequestheaders.X-Real-IP={remote_host}"
+      - "traefik.http.middlewares.oauth2proxy.headers.customrequestheaders.X-Forwarded-Uri={uri}"
+      # ForwardAuth middleware
+      - "traefik.http.middlewares.auth.forwardauth.address=http://oauth2-proxy-urartian:4180/oauth2/auth"
+      - "traefik.http.middlewares.auth.forwardauth.trustForwardHeader=true"
+      - "traefik.http.middlewares.auth.forwardauth.authResponseHeaders=X-Real-IP,X-Auth-Request-Redirect"
     # ports:
     #   - 8086:8000
 
