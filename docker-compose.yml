@@ -39,7 +39,7 @@ services:
       # ForwardAuth middleware
       - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.address=http://oauth2-proxy-urartian:4180"
       - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.trustForwardHeader=true"
-      - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.authResponseHeaders=X-Real-IP,X-Auth-Request-Redirect"
+      - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.authResponseHeaders=X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Access-Token,Authorization"
 
       # Error Page Middleware
       - "traefik.http.middlewares.oauth2proxy-error.redirectregex.regex=^.*$"
