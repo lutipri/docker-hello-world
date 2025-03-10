@@ -24,8 +24,8 @@ services:
       - "traefik.http.services.oauth2proxy-service.loadbalancer.server.scheme=http"
       - "traefik.http.services.oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
       # Middleware to set headers
-      - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Real-IP={remote_host}"
-      - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Forwarded-Uri={uri}"
+      # - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Real-IP={remote_host}"
+      # - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Forwarded-Uri={uri}"
       # ForwardAuth middleware
       - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.address=http://oauth2-proxy-urartian:4180/oauth2/auth"
       - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.trustForwardHeader=true"
