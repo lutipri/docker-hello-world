@@ -17,34 +17,34 @@ services:
     labels:
       # Router for /oauth2/*
       # HTTP
-      - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.rule=PathPrefix(`/oauth2/`)"
-      - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.service=http-oauth2proxy-service"
+      # - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.rule=PathPrefix(`/oauth2/`)"
+      # - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.service=http-oauth2proxy-service"
       # - "traefik.http.routers.http-0-u0c0s4owssskowsgscwwog8w-s2.middlewares=oauth2proxy-headers,oauth2proxy-auth,oauth2proxy-error"
       # HTTPS
-      - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.rule=PathPrefix(`/oauth2/`)"
-      - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.service=https-oauth2proxy-service"
-      - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.middlewares=oauth2proxy-headers,oauth2proxy-auth,oauth2proxy-error"
+      # - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.rule=PathPrefix(`/oauth2/`)"
+      # - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.service=https-oauth2proxy-service"
+      # - "traefik.http.routers.https-0-u0c0s4owssskowsgscwwog8w-s2.middlewares=oauth2proxy-headers,oauth2proxy-auth,oauth2proxy-error"
       # Service definition
       # HTTP
-      - "traefik.http.services.http-oauth2proxy-service.loadbalancer.server.port=4180"
+      # - "traefik.http.services.http-oauth2proxy-service.loadbalancer.server.port=4180"
       # - "traefik.http.services.http-oauth2proxy-service.loadbalancer.server.scheme=http"
-      - "traefik.http.services.http-oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
+      # - "traefik.http.services.http-oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
       # HTTPS
-      - "traefik.http.services.https-oauth2proxy-service.loadbalancer.server.port=4180"
+      # - "traefik.http.services.https-oauth2proxy-service.loadbalancer.server.port=4180"
       # - "traefik.http.services.https-oauth2proxy-service.loadbalancer.server.scheme=http"
-      - "traefik.http.services.https-oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
+      # - "traefik.http.services.https-oauth2proxy-service.loadbalancer.server.url=http://oauth2-proxy-urartian:4180"
       # Middleware to set headers
       # - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Real-IP={remote_host}"
       # - "traefik.http.middlewares.oauth2proxy-headers.headers.customrequestheaders.X-Forwarded-Uri={uri}"
-      # ForwardAuth middleware
-      - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.address=http://oauth2-proxy-urartian:4180"
-      - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.trustForwardHeader=true"
-      - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.authResponseHeaders=X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Access-Token,Authorization"
+      # # ForwardAuth middleware
+      # - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.address=http://oauth2-proxy-urartian:4180"
+      # - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.trustForwardHeader=true"
+      # - "traefik.http.middlewares.oauth2proxy-auth.forwardauth.authResponseHeaders=X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Access-Token,Authorization"
 
       # Error Page Middleware
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.regex=^.*$"
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.replacement=https://s2.apps.caption.be/oauth2/sign_in?rd=https://{host}{uri}"
-      - "traefik.http.middlewares.oauth2proxy-error.redirectregex.permanent=false"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.regex=^.*$"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.replacement=https://s2.apps.caption.be/oauth2/sign_in?rd=https://{host}{uri}"
+      # - "traefik.http.middlewares.oauth2proxy-error.redirectregex.permanent=false"
 
 
     # ports:
