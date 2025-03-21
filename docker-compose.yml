@@ -16,7 +16,6 @@ services:
       - SERVICE_FQDN_S2_8000
     labels:
       - 'traefik.http.middlewares.urartian-oauth-middleware@docker'
-      - 'traefik.http.middlewares.oauth2-error-handler@docker'
 
 
     # ports:
