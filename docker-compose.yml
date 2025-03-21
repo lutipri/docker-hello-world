@@ -15,8 +15,9 @@ services:
     environment:
       - SERVICE_FQDN_S2_8000
     labels:
-      - 'traefik.http.middlewares.oauth2-service-redirect@docker'
       - 'traefik.http.middlewares.urartian-oauth-middleware@docker'
+      - 'traefik.http.middlewares.oauth2-error-handler@docker'
+      - 'traefik.http.middlewares.oauth2-service-redirect@docker'
       
     # ports:
     #   - 8086:8000
