@@ -15,7 +15,8 @@ services:
     environment:
       - SERVICE_FQDN_S2_8000
     labels:
-      #- 'traefik.http.middlewares.urartian-oauth-middleware@docker'
+      - 'traefik.http.middlewares.oauth-errors@file'
+      - 'traefik.http.middlewares.oauth-auth@file'
       
     # ports:
     #   - 8086:8000
@@ -27,6 +28,22 @@ services:
     # ports:
     #   - 8087:8080
     command: '-listen=:8080 -text="Preview deployment test Nr 2"'
+    labels:
+      # forward auth middleware
+      - "traefik.http.middlewares.oauth-auth.forwardauth.address=https://auth.urartian.apps.caption.be/oauth2/",
+      - "traefik.http.middlewares.oauth-auth.forwardauth.trustForwardHeader=true",
+      - "traefik.http.middlewares.oauth-auth.forwardauth.authResponseHeaders=X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Redirect,X-Auth-Request-Access-Token",
+
+      # error handling middleware
+      - "traefik.http.middlewares.oauth-forwarder-signin.errors.status=401-403",
+      - "traefik.http.middlewares.oauth-forwarder-signin.errors.service=oauth-backend",
+      - "traefik.http.middlewares.oauth-forwarder-signin.errors.query=/oauth2/sign_in?rd={url}",
+
+      # chaining the middlewares together - the order matters
+      - "traefik.http.middlewares.oauth-forwarder.chain.middlewares=oauth-forwarder-signin,oauth-auth",
+
+      # attaching middleware to the service
+      - "traefik.http.routers.oauth-backend.middlewares=oauth-forwarder",
 
 # networks:
 #   ww0g4cwko8kksk004g8k4c4g: # network managed by Coolify and is created when deploying for the first time
