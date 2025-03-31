@@ -14,9 +14,9 @@ services:
     image: lutipri/hello-world
     environment:
       - SERVICE_FQDN_S2_8000
-    labels:
-      - 'traefik.http.middlewares.oauth-errors@file'
-      - 'traefik.http.middlewares.oauth-auth@file'
+    #labels:
+      #- 'traefik.http.middlewares.oauth-errors@file'
+      #- 'traefik.http.middlewares.oauth-auth@file'
       
     # ports:
     #   - 8086:8000
